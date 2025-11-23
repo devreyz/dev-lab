@@ -1,0 +1,127 @@
+/* =====================================================
+           FUNDO E CONFIGURAÇÃO GERAL DA PÁGINA
+        ====================================================== */
+body {
+    display: flex; /* Centraliza horizontalmente */
+    justify-content: center;
+    align-items: center; /* Centraliza verticalmente */
+    min-height: 100vh; /* Ocupa tela cheia */
+    margin: 0;
+    background: url("https://picsum.photos/1920/1080") no-repeat center center
+        fixed;
+    background-size: cover; /* Imagem ajustada ao fundo */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; /* Remove barras de rolagem */
+}
+
+/* =====================================================
+           CONTAINER PRINCIPAL DO RELÓGIO (EFEITO GLASSMORPHISM)
+        ====================================================== */
+.clock {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Formato circular */
+    background: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    backdrop-filter: blur(10px); /* Efeito vidro fosco */
+    position: relative;
+}
+
+/* =====================================================
+           NUMERAÇÃO DO RELÓGIO (1 a 12)
+           Cada número é girado em torno do círculo usando --i
+        ====================================================== */
+.clock .number {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    /* Rotaciona o contêiner para posicioná-lo circularmente */
+    transform: rotate(calc(30deg * var(--i) - 2deg));
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Glow no texto */
+}
+
+.clock .number b {
+    /* Rotaciona o texto para ficar “em pé” */
+    transform: rotate(calc(-30deg * var(--i)));
+    display: inline-block;
+    position: absolute;
+    top: 15px; /* Aproxima da borda do relógio */
+}
+
+/* =====================================================
+           PINO CENTRAL DO RELÓGIO
+        ====================================================== */
+.clock::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 50%; /* Bolinha central */
+    z-index: 100;
+}
+
+/* =====================================================
+           ESTILIZAÇÃO BASE DOS PONTEIROS
+           Todos os ponteiros herdam isso
+        ====================================================== */
+.hand {
+    position: absolute;
+    display: flex;
+    bottom: 50%; /* Faz a base do ponteiro ficar no centro */
+    transform-origin: 50% 100%; /* Ponto de rotação = base */
+    transform: rotateZ(-90deg); /* Posição inicial para esquerda */
+}
+
+.hand i {
+    position: absolute;
+    border-radius: 8px; /* Ponteiros levemente arredondados */
+}
+
+/* --- Ponteiro das HORAS --- */
+.hour-hand {
+    width: 8px;
+    height: 100px;
+}
+
+.hour-hand i {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Ponteiro dos MINUTOS --- */
+.minute-hand {
+    width: 6px;
+    height: 120px;
+}
+
+.minute-hand i {
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+/* --- Ponteiro dos SEGUNDOS --- */
+.second-hand {
+    width: 2px;
+    height: 150px;
+}
+
+.second-hand i {
+    width: 100%;
+    height: 100%;
+    background: #ff0077; /* Efeito neon */
+    box-shadow: 0 0 15px #ff0077; /* Glow */
+}
